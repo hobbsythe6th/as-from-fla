@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@zip.js/zip.js": "^2.8.60",
-    "preact": "^10.29.8"
+    "preact": "^10.29.8",
+    "react-ace": "^15.0.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
