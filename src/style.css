@@ -1,0 +1,87 @@
+:root {
+  color-scheme: dark;
+  --bg: #1e1e1e;
+  --panel: #7c7cff;
+  --border: #3c3c3c;
+  --text: #d4d4d4;
+  --accent: #4ec9b0;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.toolbar {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.layout {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.script-list {
+  width: 260px;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  padding: 0.5rem;
+  list-style: none;
+  margin: 0;
+}
+
+.script-list li {
+  margin-bottom: 0.25rem;
+}
+
+.script-list button {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 0.4rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.script-list button:hover {
+  background: var(--panel);
+}
+
+.script-list button.active {
+  background: var(--panel);
+  color: var(--accent);
+}
+
+.script-viewer {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.script-viewer pre {
+  margin: 0 0 1rem;
+  padding: 0.75rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+}
+
+.empty-state {
+  color: #888;
+  padding: 1rem;
+}

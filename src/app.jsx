@@ -1,31 +1,36 @@
+import { useState } from 'preact/hooks';
 import extractAS from './extractAS';
 import extractLib from './extractLib';
+import FileUpload from './components/FileUpload';
+import ScriptList from './components/ScriptList';
+import ScriptViewer from './components/ScriptViewer';
 
 export default function App() {
-  async function handleFile(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+  const [scripts, setScripts] = useState([]);
+  const [selected, setSelected] = useState(null);
 
+  async function handleFile(file) {
     const lib = await extractLib(file);
-    const scripts = await Promise.all(lib.map(entry => extractAS(entry, entry.filename)));
-    console.log(lib, scripts);
-    let ul = document.getElementById('scriptList');
-    scripts.forEach(file => {
-      let li = document.createElement('li');
-      let btn = document.createElement('button');
-      btn.textContent = Object.keys(file)[0];
-      btn.onclick = openAce;
-      li.append(btn);
-      ul.append(li);
-    })
+    const results = await Promise.all(lib.map(entry => extractAS(entry, entry.filename)));
+    const flattened = results
+      .filter(result => Object.keys(result).length)
+      .map(result => {
+        const name = Object.keys(result)[0];
+        return { name, code: result[name] };
+      });
+    setScripts(flattened);
+    setSelected(flattened[0]?.name ?? null);
   }
 
-  function openAce(){}
+  const activeEntry = scripts.find(s => s.name === selected);
 
   return (
-    <div id="app">
-      <input type='file' accept='.fla' id="fileIn" onChange={handleFile} />
-      <ul id="scriptList"></ul>
+    <div class="app">
+      <FileUpload onFile={handleFile} />
+      <div class="layout">
+        <ScriptList scripts={scripts} selected={selected} onSelect={setSelected} />
+        <ScriptViewer entry={activeEntry} />
+      </div>
     </div>
   )
 }
