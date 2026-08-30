@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@zip.js/zip.js": "^2.8.60",
+    "@zip.js/zip.js": "^2.8.61",
     "preact": "^10.29.8",
     "react-ace": "^15.0.0"
   },

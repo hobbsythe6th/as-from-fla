@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@zip.js/zip.js':
-        specifier: ^2.8.60
-        version: 2.8.60
+        specifier: ^2.8.61
+        version: 2.8.61
       preact:
         specifier: ^10.29.8
         version: 10.29.8
@@ -277,8 +277,8 @@ packages:
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
 
-  '@zip.js/zip.js@2.8.60':
-    resolution: {integrity: sha512-pULv0waMlnKAUUxrsuAOa0ADONGRuhdHORtuXVgClNlScDB5YjImCV8DZrE1SicaROyE6MwGkH8CLJ+o4Nx07g==}
+  '@zip.js/zip.js@2.8.61':
+    resolution: {integrity: sha512-F9RnQJXgvCSdAJfMtSrH5Uh/LcLg8fZlg5ARC4u5N4w9v/DG27cN3C/ngUrY1JdJGX2LRv5DDViXeZJgbcppWA==}
     engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=18.0.0'}
 
   ace-builds@1.44.0:
@@ -892,7 +892,7 @@ snapshots:
 
   '@types/estree@1.0.9': {}
 
-  '@zip.js/zip.js@2.8.60': {}
+  '@zip.js/zip.js@2.8.61': {}
 
   ace-builds@1.44.0: {}
 
