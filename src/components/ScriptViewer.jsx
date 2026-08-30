@@ -2,6 +2,7 @@ import AceEditor from 'react-ace';
 import "ace-builds/src-noconflict/mode-actionscript";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/snippets/actionscript";
 
 export default function ScriptViewer({ entry }) {
   if (!entry) {
@@ -13,22 +14,24 @@ export default function ScriptViewer({ entry }) {
   }
   return (
     <div class="script-viewer">
-      {entry.code.map((code) => (
-        <div id="script-viewer-div">
+      {entry.code.map((code, i) => (
+        <div class="script-viewer-div" key={i}>
           <AceEditor
             mode="actionscript"
             theme="monokai"
             onChange={onChange}
-            name="script-viewer"
+            name={`script-viewer-${i}`}
             editorProps={{ $blockScrolling: true }}
             setOptions={{
               enableBasicAutocompletion: true,
               enableLiveAutocompletion: true,
-              enableSnippets: true
+              enableSnippets: true,
+              readOnly: true,
+              useWorker: false
             }}
             value={code}
-            width={window.width / 3}
-            height={window.height} />
+            width="100%"
+            height="100%" />
         </div>
       ))}
     </div>

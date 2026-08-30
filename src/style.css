@@ -32,7 +32,7 @@ body {
 }
 
 .script-list {
-  width: 260px;
+  width: 520px;
   overflow-y: auto;
   border-right: 1px solid var(--border);
   padding: 0.5rem;
@@ -67,8 +67,17 @@ body {
 
 .script-viewer {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
   overflow: auto;
   padding: 1rem;
+  box-sizing: border-box;
+}
+
+.script-viewer-div {
+  flex: 1;
+  min-height: 0;
 }
 
 .script-viewer pre {
