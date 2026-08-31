@@ -14,8 +14,12 @@ export default function ScriptViewer({ entry }) {
   }
   return (
     <div class="script-viewer">
-      {entry.code.map((code, i) => (
+      {entry.code.map(({ frame, layer, code }, i) => (
         <div class="script-viewer-div" key={i}>
+          <p class="frame-label">
+            {frame !== null ? `Frame ${frame}` : 'Unknown frame'}
+            {layer ? ` — ${layer}` : ''}
+          </p>
           <AceEditor
             mode="actionscript"
             theme="chaos"
@@ -30,6 +34,7 @@ export default function ScriptViewer({ entry }) {
               useWorker: false
             }}
             value={code}
+            className="ace-editor"
             width="100%"
             height="100%" />
         </div>

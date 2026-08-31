@@ -19,7 +19,15 @@ export default async function extractAS(file, filename = 'unnamed_file', binary 
         const timeline = doc.getElementsByTagName('DOMTimeline')[0];
         if (timeline) nm = timeline.name;
     }
-    const nodes = [...doc.getElementsByTagName('script')].map(node => node.textContent);
+    const nodes = [...doc.getElementsByTagName('script')].map(node => {
+        const frame = node.closest('DOMFrame');
+        const layer = node.closest('DOMLayer');
+        return {
+            frame: frame ? frame.getAttribute('index') : null,
+            layer: layer ? layer.getAttribute('name') : null,
+            code: node.textContent
+        };
+    });
     if (nodes.length) scripts[nm] = nodes;
     return scripts;
 }

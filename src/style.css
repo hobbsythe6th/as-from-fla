@@ -77,6 +77,28 @@ body {
 
 .script-viewer-div {
   flex: 1;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.script-viewer-div:last-child {
+  margin-bottom: 0;
+}
+
+.frame-label {
+  flex: none;
+  margin: 0 0 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ace-editor {
+  flex: 1;
   min-height: 0;
 }
 
