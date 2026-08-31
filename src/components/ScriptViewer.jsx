@@ -4,9 +4,9 @@ import "ace-builds/src-noconflict/theme-chaos";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/actionscript";
 
-export default function ScriptViewer({ entry }) {
+export default function ScriptViewer({ entry}) {
   if (!entry) {
-    return <p class="empty-state">Select a symbol on the left to view its ActionScript.</p>;
+    return;
   }
 
   function onChange(script) {
@@ -16,10 +16,12 @@ export default function ScriptViewer({ entry }) {
     <div class="script-viewer">
       {entry.code.map(({ frame, layer, code }, i) => (
         <div class="script-viewer-div" key={i}>
-          <p class="frame-label">
-            {frame !== null ? `Frame ${frame}` : 'Unknown frame'}
-            {layer ? ` — ${layer}` : ''}
-          </p>
+          {(frame !== null || layer) && (
+            <p class="frame-label">
+              {frame !== null ? `Frame ${frame}` : ''}
+              {layer ? ` — ${layer}` : ''}
+            </p>
+          )}
           <AceEditor
             mode="actionscript"
             theme="chaos"

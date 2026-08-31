@@ -6,8 +6,10 @@ import ScriptList from './components/ScriptList';
 import ScriptViewer from './components/ScriptViewer';
 
 export default function App() {
-  const [scripts, setScripts] = useState([]);
+  const [flaScripts, setFlaScripts] = useState([]);
+  const [ASScripts, setASScripts] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [flaLoaded, setFlaLoaded] = useState(false);
 
   async function handleFile(file) {
     const lib = await extractLib(file);
@@ -16,19 +18,31 @@ export default function App() {
       .filter(result => Object.keys(result).length)
       .map(result => {
         const name = Object.keys(result)[0];
-        return { name, code: result[name] };
+        return { id: `fla-${name}`, name, code: result[name] };
       });
-    setScripts(flattened);
-    setSelected(flattened[0]?.name ?? null);
+    setFlaScripts(flattened);
+    setFlaLoaded(true);
+    setSelected(flattened[0]?.id ?? null);
   }
 
-  const activeEntry = scripts.find(s => s.name === selected);
+  async function handleASFiles(files) {
+    const results = await Promise.all(files.map(async file => ({
+      id: `as-${file.name}`,
+      name: file.name,
+      code: [{ frame: null, layer: null, code: await file.text() }]
+    })));
+    setASScripts(prev => [...prev, ...results]);
+    setSelected(prev => prev ?? results[0]?.id ?? null);
+  }
+
+  const scripts = [...flaScripts, ...ASScripts];
+  const activeEntry = scripts.find(s => s.id === selected);
 
   return (
     <div class="app">
-      <FileUpload onFile={handleFile} />
+      <FileUpload onFile={handleFile} onASFiles={handleASFiles} />
       <div class="layout">
-        <ScriptList scripts={scripts} selected={selected} onSelect={setSelected} />
+        <ScriptList scripts={scripts} selected={selected} onSelect={setSelected} loaded={flaLoaded} />
         <ScriptViewer entry={activeEntry} />
       </div>
     </div>
