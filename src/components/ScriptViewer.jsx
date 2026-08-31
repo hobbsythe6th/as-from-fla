@@ -1,6 +1,6 @@
 import AceEditor from 'react-ace';
 import "ace-builds/src-noconflict/mode-actionscript";
-import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-chaos";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/actionscript";
 
@@ -18,7 +18,7 @@ export default function ScriptViewer({ entry }) {
         <div class="script-viewer-div" key={i}>
           <AceEditor
             mode="actionscript"
-            theme="monokai"
+            theme="chaos"
             onChange={onChange}
             name={`script-viewer-${i}`}
             editorProps={{ $blockScrolling: true }}

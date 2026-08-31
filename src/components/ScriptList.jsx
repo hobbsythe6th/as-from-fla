@@ -11,7 +11,7 @@ export default function ScriptList({ scripts, selected, onSelect }) {
             class={name === selected ? 'active' : ''}
             onClick={() => onSelect(name)}
           >
-            {name}
+            {name.replace('.xml', '')}
           </button>
         </li>
       ))}
