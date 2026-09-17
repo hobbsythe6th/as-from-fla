@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@zip.js/zip.js": "^2.8.61",
+    "ace-builds": "^1.44.0",
     "preact": "^10.29.8",
     "react-ace": "^15.0.0"
   },
